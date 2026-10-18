@@ -29,6 +29,29 @@ class DynamicPageTest {
         }
     }
 
+    @Test fun loaderPreservesDisabledValidationAndCancellationBoundaries() = runTest {
+        var calls = 0
+        val prepared = object : PreparedDynamicPage {
+            override fun open() = error("preparation must not mount")
+            override fun close() = Unit
+        }
+        val loader = object : DynamicPageLoader {
+            override val provider = "test"
+            override suspend fun prepare(request: DynamicPageRequest): PreparedDynamicPage { calls++; return prepared }
+        }
+        assertNull(DynamicPageConfiguration().prepare(request, loader))
+        assertNull(DynamicPageConfiguration("other").prepare(request, loader))
+        assertNull(DynamicPageConfiguration("test").prepare(request, null))
+        assertNull(DynamicPageConfiguration("test").prepare(request.copy(paramsJson = "[]"), loader))
+        assertEquals(0, calls)
+        assertSame(prepared, DynamicPageConfiguration("test").prepare(request, loader))
+        val failing = object : DynamicPageLoader {
+            override val provider = "test"
+            override suspend fun prepare(request: DynamicPageRequest): PreparedDynamicPage? = throw CancellationException()
+        }
+        assertFailsWith<CancellationException> { DynamicPageConfiguration("test").prepare(request, failing) }
+    }
+
     @Test fun propagatesCancellation() = runTest {
         assertFailsWith<CancellationException> {
             DynamicPageConfiguration("test").open(request, runtime { throw CancellationException() })
