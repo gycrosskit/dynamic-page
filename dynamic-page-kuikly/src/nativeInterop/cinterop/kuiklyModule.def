@@ -1,0 +1,2 @@
+headers = kuiklyModule.h
+package = io.github.gycrosskit.dynamicpage.render
