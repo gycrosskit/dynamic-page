@@ -9,8 +9,9 @@ mkdir -p build
 # 每次使用空 staging；保留旧候选和失败证据，不混入其他版本。
 export DYNAMIC_PAGE_STAGING_DIR="$(mktemp -d "$PWD/build/staging.XXXXXX")"
 bash gradlew --no-daemon --max-workers=1 publishAllPublicationsToStagingRepository
+python3 scripts/prepare-cinterop-publication.py "$DYNAMIC_PAGE_STAGING_DIR"
 python3 jitpack-metadata.py "$DYNAMIC_PAGE_STAGING_DIR/com/github/gycrosskit/dynamic-page"
-python3 scripts/check-maven.py "$DYNAMIC_PAGE_STAGING_DIR" "$GROUP" "$VERSION" dynamic-page-core,dynamic-page-kuikly ios_arm64,ios_x64,ios_simulator_arm64,ohos_arm64 --max-jvm-major 55
+python3 scripts/check-maven.py "$DYNAMIC_PAGE_STAGING_DIR" "$GROUP" "$VERSION" dynamic-page-core,dynamic-page-kuikly ios_arm64,ios_x64,ios_simulator_arm64,ohos_arm64 dynamic-page-core,dynamic-page-core-android,dynamic-page-core-iosarm64,dynamic-page-core-iossimulatorarm64,dynamic-page-core-iosx64,dynamic-page-core-ohosarm64,dynamic-page-kuikly,dynamic-page-kuikly-android,dynamic-page-kuikly-iosarm64,dynamic-page-kuikly-iossimulatorarm64,dynamic-page-kuikly-iosx64,dynamic-page-kuikly-ohosarm64,dynamic-page-cinterop-ohosarm64 --max-jvm-major 55
 archive_dir="build/prebuilt/$VERSION"
 mkdir -p build/prebuilt
 mkdir "$archive_dir"

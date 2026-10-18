@@ -5,7 +5,7 @@ plugins {
 }
 allprojects {
     group = providers.environmentVariable("GROUP").orElse("com.github.gycrosskit.dynamic-page").get()
-    version = providers.environmentVariable("VERSION").orElse("0.1.0-rc.1").get()
+    version = providers.environmentVariable("VERSION").orElse("0.1.0-rc.2").get()
 
     plugins.withId("maven-publish") {
         extensions.configure<org.gradle.api.publish.PublishingExtension> {

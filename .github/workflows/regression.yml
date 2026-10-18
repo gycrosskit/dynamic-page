@@ -33,6 +33,7 @@ jobs:
       - run: test -f "$ANDROID_HOME/platforms/android-36/android.jar"
       - run: bash scripts/ci-pin-fork-host.sh
         timeout-minutes: 3
+      - run: python3 scripts/test-cinterop-publication.py
       - name: Test and compile Android sources
         timeout-minutes: 30
         run: |

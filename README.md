@@ -1,8 +1,8 @@
 # Dynamic Page
 
-通用动态页面契约与 Kuikly 宿主网络 Module，首个预发布版本 `0.1.0-rc.1`。默认
+通用动态页面契约与 Kuikly 宿主网络 Module，Maven 预发布版本 `0.1.0-rc.2`。默认
 `DynamicPageConfiguration(provider = "none")`，不会下载页面、启动动态 SDK 或改变现有路由。
-Maven 通过 JitPack 消费，iOS 薄接收端通过同版 Git Pod 消费；不包含 Shiply 或动态包执行。
+Maven 通过 JitPack 消费，iOS 薄接收端通过配套 Git Pod 消费；不包含 Shiply 或动态包执行。
 
 - `dynamic-page-core`：页面请求、provider 分发和宿主注入的网络契约；不创建 Ktor Client、不读取凭据。
 - `dynamic-page-kuikly`：JSON callback Module、每个 Renderer 独占的 native handler 与 Android/OHOS 接收端。
@@ -15,8 +15,8 @@ Maven 通过 JitPack 消费，iOS 薄接收端通过同版 Git Pod 消费；不�
 固定 Maven 坐标：
 
 ```kotlin
-implementation("com.github.gycrosskit.dynamic-page:dynamic-page-core:0.1.0-rc.1")
-implementation("com.github.gycrosskit.dynamic-page:dynamic-page-kuikly:0.1.0-rc.1")
+implementation("com.github.gycrosskit.dynamic-page:dynamic-page-core:0.1.0-rc.2")
+implementation("com.github.gycrosskit.dynamic-page:dynamic-page-kuikly:0.1.0-rc.2")
 ```
 
 宿主配置 JitPack 仓库后使用以上坐标。源码联调可显式使用 Gradle `includeBuild`，但不能作为远程消费证明。Kotlin 固定
@@ -72,7 +72,10 @@ bash gradlew :dynamic-page-kuikly:compileKotlinIosSimulatorArm64 :dynamic-page-k
 
 ## 发布
 
-`VERSION=0.1.0-rc.1 bash scripts/archive-prebuilt.sh` 在独占 macOS Worktree 构建完整 Maven 归档，
-复用共用 metadata/checker 验证 12 个 publication、四个 Native 目标、POM 及四种摘要。冻结摘要写入
+`VERSION=0.1.0-rc.2 bash scripts/archive-prebuilt.sh` 在独占 macOS Worktree 构建完整 Maven 归档，
+复用共用 metadata/checker 验证 13 个 publication、四个 Native 目标、POM 及四种摘要。冻结摘要写入
 `release-checksums.txt`，同名 Tag 与 GitHub Release 归档不可覆盖；JitPack 仅安装已验证字节。
 发布后使用 `scripts/check-public-maven.py` 检查全部公开变体，再由宿主独立验证三端正式依赖。
+
+鸿蒙 C interop 仅在发布阶段作为真实传递 artifact 独立发布，避免 JitPack 把两个 KLIB 的 classifier 改写为同一 URL；宿主仍只依赖原有两个产品。
+iOS 原生源码未变，配套 Git Pod 保持已经验收的 `0.1.0-rc.1`。Maven `rc.1` 的鸿蒙元数据不完整，不用于宿主接入。
