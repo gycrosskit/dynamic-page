@@ -2,6 +2,8 @@
 
 package io.github.gycrosskit.dynamicpage.kuikly
 
+import io.github.gycrosskit.dynamicpage.DynamicCapabilityTransport
+import io.github.gycrosskit.dynamicpage.DynamicNetworkResponse
 import io.github.gycrosskit.dynamicpage.DynamicNetworkTransport
 import io.github.gycrosskit.dynamicpage.render.*
 import kotlinx.cinterop.*
@@ -10,11 +12,19 @@ import kotlin.native.ref.createCleaner
 import platform.posix.*
 
 private var transportFactory: (() -> DynamicNetworkTransport)? = null
+private var capabilityFactory: (() -> DynamicCapabilityTransport)? = null
 
 /** 在宿主 initKuikly、创建 Renderer 前调用一次；Ktor 和凭据仍归宿主。 */
-fun registerOhosDynamicNetworkModule(createTransport: () -> DynamicNetworkTransport) {
+fun registerOhosDynamicNetworkModule(createTransport: () -> DynamicNetworkTransport) =
+    registerOhosDynamicNetworkModule(createTransport) { DynamicCapabilityTransport { DynamicNetworkResponse("unavailable") } }
+
+fun registerOhosDynamicNetworkModule(
+    createTransport: () -> DynamicNetworkTransport,
+    createCapabilities: () -> DynamicCapabilityTransport,
+) {
     if (transportFactory != null) return
     transportFactory = createTransport
+    capabilityFactory = createCapabilities
     KRRenderModuleRegisterV2(DynamicNetworkModule.NAME, staticCFunction(::construct),
         staticCFunction(::destruct), staticCFunction(::call), null)
 }
@@ -43,7 +53,9 @@ private class OhosNetworkOwner {
             locked {
                 if (!closed) {
                     val current = handler ?: runCatching {
-                        DynamicNetworkHandler(checkNotNull(transportFactory).invoke())
+                        DynamicNetworkHandler(
+                            checkNotNull(transportFactory).invoke(), checkNotNull(capabilityFactory).invoke(),
+                        )
                     }.getOrNull()?.also { handler = it }
                     if (current == null) {
                         if (callback != null) KRRenderModuleDoCallback(callback, "{\"status\":\"unavailable\"}")
@@ -60,9 +72,8 @@ private class OhosNetworkOwner {
     fun dispose() {
         locked { closed = true }
         scope.launch {
-            handler?.dispose()
-            handler = null
-            scope.cancel()
+            try { handler?.dispose() }
+            finally { handler = null; scope.cancel() }
         }
     }
 
