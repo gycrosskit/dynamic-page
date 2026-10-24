@@ -1,6 +1,8 @@
 # Dynamic Page
 
-通用动态页面契约与 Kuikly 宿主能力 Module；Maven `0.1.0-rc.3` 发布候选包含通用能力 `invoke` / `invokeTask` 与两阶段页面 loader。默认
+2026-10-24 版本准备：Maven 与 iOS Git Pod 的默认版本统一为 `1.0.0` 未发布候选，基于远端 main `4ebb1c91c62cede98a49e78ecb8e870bc3cdf860`。下方 rc.3 / rc.1 坐标及历史验证记录保留，不代表 1.0.0 已发布。构建、回归、归档及精确发布消费以 Jenkins 为迁移目标，待本轮按源码/CI SHA 与准确构建链接实跑验收；原 Actions 配置仍保留并启用。本机只做 Python 3 标准库、shell 与文档轻量检查，不运行 Gradle、Swift/Xcode 或 Hvigor 重编译。
+
+通用动态页面契约与 Kuikly 宿主能力 Module；既有 Maven `0.1.0-rc.3` 候选包含通用能力 `invoke` / `invokeTask` 与两阶段页面 loader。默认
 `DynamicPageConfiguration(provider = "none")`，不会下载页面、启动动态 SDK 或改变现有路由。
 Maven 通过 JitPack 消费，iOS 薄接收端通过配套 Git Pod 消费；不包含 Shiply 或动态包执行。
 
@@ -90,7 +92,7 @@ OHOS 在业务 runtime 已建立、首次调用 Module 前执行
 
 ## 验证与许可
 
-以下定向测试与 Kotlin 编译已在独占任务 Worktree 中执行，本轮候选通过临时源码替换与宿主联调；
+以下保留 rc.3 的定向测试与 Kotlin 编译记录，历史候选通过临时源码替换与宿主联调；
 新 API 不能用旧发布版本验证；每轮最终源码的实际结果和未覆盖项记录在任务中：
 
 ```bash
@@ -99,15 +101,15 @@ bash gradlew :dynamic-page-kuikly:compileKotlinIosSimulatorArm64 :dynamic-page-k
 ```
 
 宿主源码联调另已完成 iOS Simulator / OHOS Native 链接。实际执行结果及未覆盖范围见功能文档；
-`0.1.0-rc.3` 按下方流程冻结归档，经 PR 门禁合并后发布；远程消费结果由发布回执与宿主记录确认，不代替设备行为或真实热更新验收。
+`1.0.0` 待按下方流程冻结归档并完成 Jenkins / PR 门禁；远程消费结果由发布回执与宿主记录确认，不代替设备行为或真实热更新验收。
 组件自有代码使用 [Apache-2.0](LICENSE)；Kuikly ABI 声明的许可见[第三方声明](THIRD_PARTY_NOTICES.md)。
 
 ## 发布
 
-`VERSION=0.1.0-rc.3 bash scripts/archive-prebuilt.sh` 在独占 macOS Worktree 构建完整 Maven 归档，
+Jenkins 以 `VERSION=1.0.0 bash scripts/archive-prebuilt.sh` 构建完整 Maven 候选归档，
 复用共用 metadata/checker 验证 13 个 publication、四个 Native 目标、POM 及四种摘要。冻结摘要写入
 `release-checksums.txt`，同名 Tag 与 GitHub Release 归档不可覆盖；JitPack 仅安装已验证字节。
 发布后使用 `scripts/check-public-maven.py` 检查全部公开变体，再由宿主独立验证三端正式依赖。
 
 鸿蒙 C interop 仅在发布阶段作为真实传递 artifact 独立发布，避免 JitPack 把两个 KLIB 的 classifier 改写为同一 URL；宿主仍只依赖原有两个产品。
-iOS 原生源码未变，配套 Git Pod 保持已经验收的 `0.1.0-rc.1`。Maven `rc.1` 的鸿蒙元数据不完整，不用于宿主接入。
+iOS 原生源码未变，Git Pod 元数据与 Maven 同步为 `1.0.0` 未发布候选；历史已经验收的 Git Pod `0.1.0-rc.1` 保留，不能代算 1.0.0 消费通过。Maven `rc.1` 的鸿蒙元数据不完整，不用于宿主接入。
