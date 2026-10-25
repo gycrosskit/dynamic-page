@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'GycDynamicPageNative'
-  spec.version = '1.0.0'
+  spec.version = '1.0.1'
   spec.summary = 'Kuikly 动态页网络 Module 的 iOS 薄接收端'
   spec.homepage = 'https://github.com/gycrosskit'
   spec.license = { :type => 'Apache-2.0', :file => 'LICENSE' }
