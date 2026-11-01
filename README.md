@@ -2,7 +2,7 @@
 
 Kuikly 由宿主统一选择版本；组件构建基线、允许范围及消费验证边界见[功能与平台差异](docs/功能与平台差异.md#kuikly-版本与宿主选择)。
 
-2026-10-25 当前候选为 Maven、已有 Native/Harmony 渠道配套 `1.0.1`；保留已存在的 `1.0.0` 标签与原摘要。下述带日期的 `1.0.0` 准备记录属于历史，本轮源码、归档和公开消费须重新验收，尚未宣称已发布。
+> iOS Git Pod `1.0.2`（`native-1.0.2`）；本库无独立 HAR；Maven 保留 `1.0.1`。发布与精确消费状态见对应 Release；旧 Tag、归档及摘要不变。
 
 > 历史准备记录：2026-10-24 版本准备：Maven 与 iOS Git Pod 的默认版本统一为 `1.0.0` 未发布候选，基于远端 main `4ebb1c91c62cede98a49e78ecb8e870bc3cdf860`。下方 rc.3 / rc.1 坐标及历史验证记录保留，不代表 1.0.0 已发布。构建、回归、归档及精确发布消费以 Jenkins 为迁移目标，待本轮按源码/CI SHA 与准确构建链接实跑验收；源码 verify 入口为[统一远程验证（Jenkins）](https://github.com/gycrosskit/.github/blob/main/docs/统一远程验证.md)，候选冻结/私有消费与精确 Tag/候选公开消费分别按[发布流程](https://github.com/gycrosskit/.github/blob/main/docs/发布流程.md)使用独立 package/release Job；原 Actions 配置已退出使用。本机只做 Python 3 标准库、shell 与文档轻量检查，不运行 Gradle、Swift/Xcode 或 Hvigor 重编译。
 
@@ -116,4 +116,4 @@ Jenkins 以 `VERSION=1.0.1 bash scripts/archive-prebuilt.sh` 构建完整 Maven 
 发布后使用 `scripts/check-public-maven.py` 检查全部公开变体，再由宿主独立验证三端正式依赖。
 
 鸿蒙 C interop 仅在发布阶段作为真实传递 artifact 独立发布，避免 JitPack 把两个 KLIB 的 classifier 改写为同一 URL；宿主仍只依赖原有两个产品。
-iOS 原生源码未变，Git Pod 元数据与 Maven 同步为 `1.0.1` 未发布候选；历史已经验收的 Git Pod `0.1.0-rc.1` 保留，不能代算 1.0.1 消费通过。Maven `rc.1` 的鸿蒙元数据不完整，不用于宿主接入。
+iOS receiver 实现不变，Git Pod 为 `1.0.2`（`native-1.0.2`），Maven 保留 `1.0.1`；历史已经验收的 Git Pod `0.1.0-rc.1` 保留，不能代算当前 Git Pod 消费通过。Maven `rc.1` 的鸿蒙元数据不完整，不用于宿主接入。
