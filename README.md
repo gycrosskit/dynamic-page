@@ -1,5 +1,7 @@
 # Dynamic Page
 
+Kuikly 由宿主统一选择版本；组件构建基线、允许范围及消费验证边界见[功能与平台差异](docs/功能与平台差异.md#kuikly-版本与宿主选择)。
+
 2026-10-25 当前候选为 Maven、已有 Native/Harmony 渠道配套 `1.0.1`；保留已存在的 `1.0.0` 标签与原摘要。下述带日期的 `1.0.0` 准备记录属于历史，本轮源码、归档和公开消费须重新验收，尚未宣称已发布。
 
 > 历史准备记录：2026-10-24 版本准备：Maven 与 iOS Git Pod 的默认版本统一为 `1.0.0` 未发布候选，基于远端 main `4ebb1c91c62cede98a49e78ecb8e870bc3cdf860`。下方 rc.3 / rc.1 坐标及历史验证记录保留，不代表 1.0.0 已发布。构建、回归、归档及精确发布消费以 Jenkins 为迁移目标，待本轮按源码/CI SHA 与准确构建链接实跑验收；源码 verify 入口为[统一远程验证（Jenkins）](https://github.com/gycrosskit/.github/blob/main/docs/统一远程验证.md)，候选冻结/私有消费与精确 Tag/候选公开消费分别按[发布流程](https://github.com/gycrosskit/.github/blob/main/docs/发布流程.md)使用独立 package/release Job；原 Actions 配置已退出使用。本机只做 Python 3 标准库、shell 与文档轻量检查，不运行 Gradle、Swift/Xcode 或 Hvigor 重编译。

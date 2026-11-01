@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.author = { 'GY CrossKit' => 'https://github.com/gycrosskit' }
   spec.source = { :git => 'https://github.com/gycrosskit/dynamic-page.git', :tag => spec.version.to_s }
   spec.source_files = 'ios/Sources/GycDynamicPageNative/**/*.swift'
-  spec.dependency 'OpenKuiklyIOSRender', '2.29.1'
+  spec.dependency 'OpenKuiklyIOSRender', '>= 2.29.1', '< 3.0'
   spec.ios.deployment_target = '14.0'
   spec.swift_version = '5.9'
 end
