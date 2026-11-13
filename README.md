@@ -18,11 +18,11 @@ Maven 通过 JitPack 消费，iOS 薄接收端通过配套 Git Pod 消费；不�
 
 ## 本地接入
 
-固定 Maven 坐标：
+当前 [Maven `1.0.1` Release](https://github.com/gycrosskit/dynamic-page/releases/tag/1.0.1) 的精确坐标；JitPack 解析与独立消费须另行核验：
 
 ```kotlin
-implementation("com.github.gycrosskit.dynamic-page:dynamic-page-core:0.1.0-rc.3")
-implementation("com.github.gycrosskit.dynamic-page:dynamic-page-kuikly:0.1.0-rc.3")
+implementation("com.github.gycrosskit.dynamic-page:dynamic-page-core:1.0.1")
+implementation("com.github.gycrosskit.dynamic-page:dynamic-page-kuikly:1.0.1")
 ```
 
 宿主配置 JitPack 仓库后使用以上坐标。源码联调可显式使用 Gradle `includeBuild`，但不能作为远程消费证明。Kotlin 固定
@@ -83,7 +83,7 @@ kuiklyRenderExport.registerDynamicNetworkModule(
 )
 ```
 
-iOS 在 Podfile 使用 `pod 'GycDynamicPageNative', :git => 'https://github.com/gycrosskit/dynamic-page.git', :tag => '0.1.0-rc.1'`。
+iOS 在 Podfile 使用 `pod 'GycDynamicPageNative', :git => 'https://github.com/gycrosskit/dynamic-page.git', :tag => 'native-1.0.2'`；[该 Tag](https://github.com/gycrosskit/dynamic-page/tree/native-1.0.2) 与 Maven 独立版本化，Git Pod 消费须单独核验。
 宿主已有 Shared framework 需 export `dynamic-page-kuikly`，并在 Main 创建每 Renderer 一个
 `DynamicNetworkHandler(hostTransport, hostCapabilities)`，将其 call/dispose 闭包装入 `GycDynamicNetworkHandler`，通过
 `GycDynamicNetworkModule.register(makeHandler:)` 安装工厂。同版 Pod 只含薄接收端，不包含第二份 Shared。
@@ -105,7 +105,7 @@ bash gradlew :dynamic-page-kuikly:compileKotlinIosSimulatorArm64 :dynamic-page-k
 ```
 
 宿主源码联调另已完成 iOS Simulator / OHOS Native 链接。实际执行结果及未覆盖范围见功能文档；
-`1.0.1` 待按下方流程冻结归档并完成 Jenkins / PR 门禁；远程消费结果由发布回执与宿主记录确认，不代替设备行为或真实热更新验收。
+Maven `1.0.1` 已有[正式 Release](https://github.com/gycrosskit/dynamic-page/releases/tag/1.0.1)；归档发布、JitPack 解析与独立消费分别判断，远程消费结果由精确版本回执与宿主记录确认，不代替设备行为或真实热更新验收。
 组件自有代码使用 [Apache-2.0](LICENSE)；Kuikly ABI 声明的许可见[第三方声明](THIRD_PARTY_NOTICES.md)。
 
 ## 发布
