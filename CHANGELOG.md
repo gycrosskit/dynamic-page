@@ -1,5 +1,11 @@
 # 更新记录
 
+## 1.0.2（Maven 候选，尚未发布）
+
+- Maven 默认版本对齐现有 iOS Git Pod `1.0.2`；不重发 Native，不新增 HAR/SPM。
+- 回流 main 的准确接入坐标与历史发布说明，保留 dev 的 JDK 21；公开 API、源码行为与宿主边界不变。
+- 源码、SDK、冻结归档及精确公开消费以本轮收据为准，不覆盖旧 Tag、归档或摘要。
+
 ## Native 1.0.2
 
 - iOS Git Pod 使用 `native-1.0.2`；本库不新增 HAR；Maven 保留 `1.0.1`，不重发未修改的 KMP 产物。
