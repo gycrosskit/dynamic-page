@@ -2,11 +2,9 @@
 
 Kuikly 由宿主统一选择版本；组件构建基线、允许范围及消费验证边界见[功能与平台差异](docs/功能与平台差异.md#kuikly-版本与宿主选择)。
 
-> iOS Git Pod `1.0.2`（`native-1.0.2`）；本库无独立 HAR；Maven 保留 `1.0.1`。发布与精确消费状态见对应 Release；旧 Tag、归档及摘要不变。
+当前已发布 Maven 为 [`1.0.1`](https://github.com/gycrosskit/dynamic-page/releases/tag/1.0.1)，iOS Git Pod 为 `1.0.2`（`native-1.0.2`）；本库无独立 HAR/SPM。本轮只准备 Maven `1.0.2` 候选，与现有 Git Pod 版本对齐，尚未发布；旧 Tag、归档和摘要保持不变。源码、SDK、发布与精确消费分别验收。
 
-> 历史准备记录：2026-10-24 版本准备：Maven 与 iOS Git Pod 的默认版本统一为 `1.0.0` 未发布候选，基于远端 main `4ebb1c91c62cede98a49e78ecb8e870bc3cdf860`。下方 rc.3 / rc.1 坐标及历史验证记录保留，不代表 1.0.0 已发布。构建、回归、归档及精确发布消费以 Jenkins 为迁移目标，待本轮按源码/CI SHA 与准确构建链接实跑验收；源码 verify 入口为[统一远程验证（Jenkins）](https://github.com/gycrosskit/.github/blob/main/docs/统一远程验证.md)，候选冻结/私有消费与精确 Tag/候选公开消费分别按[发布流程](https://github.com/gycrosskit/.github/blob/main/docs/发布流程.md)使用独立 package/release Job；原 Actions 配置已退出使用。本机只做 Python 3 标准库、shell 与文档轻量检查，不运行 Gradle、Swift/Xcode 或 Hvigor 重编译。
-
-通用动态页面契约与 Kuikly 宿主能力 Module；既有 Maven `0.1.0-rc.3` 候选包含通用能力 `invoke` / `invokeTask` 与两阶段页面 loader。默认
+通用动态页面契约与 Kuikly 宿主能力 Module；现有 Maven 包含通用能力 `invoke` / `invokeTask` 与两阶段页面 loader。默认
 `DynamicPageConfiguration(provider = "none")`，不会下载页面、启动动态 SDK 或改变现有路由。
 Maven 通过 JitPack 消费，iOS 薄接收端通过配套 Git Pod 消费；不包含 Shiply 或动态包执行。
 
@@ -18,11 +16,11 @@ Maven 通过 JitPack 消费，iOS 薄接收端通过配套 Git Pod 消费；不�
 
 ## 本地接入
 
-固定 Maven 坐标：
+以下为 Maven `1.0.2` 未发布候选坐标；发布前继续使用现有 `1.0.1`，JitPack 解析与独立消费须另行核验：
 
 ```kotlin
-implementation("com.github.gycrosskit.dynamic-page:dynamic-page-core:0.1.0-rc.3")
-implementation("com.github.gycrosskit.dynamic-page:dynamic-page-kuikly:0.1.0-rc.3")
+implementation("com.github.gycrosskit.dynamic-page:dynamic-page-core:1.0.2")
+implementation("com.github.gycrosskit.dynamic-page:dynamic-page-kuikly:1.0.2")
 ```
 
 宿主配置 JitPack 仓库后使用以上坐标。源码联调可显式使用 Gradle `includeBuild`，但不能作为远程消费证明。Kotlin 固定
@@ -83,7 +81,7 @@ kuiklyRenderExport.registerDynamicNetworkModule(
 )
 ```
 
-iOS 在 Podfile 使用 `pod 'GycDynamicPageNative', :git => 'https://github.com/gycrosskit/dynamic-page.git', :tag => '0.1.0-rc.1'`。
+iOS 在 Podfile 使用 `pod 'GycDynamicPageNative', :git => 'https://github.com/gycrosskit/dynamic-page.git', :tag => 'native-1.0.2'`；[该 Tag](https://github.com/gycrosskit/dynamic-page/tree/native-1.0.2) 与 Maven 独立版本化，Git Pod 消费须单独核验。
 宿主已有 Shared framework 需 export `dynamic-page-kuikly`，并在 Main 创建每 Renderer 一个
 `DynamicNetworkHandler(hostTransport, hostCapabilities)`，将其 call/dispose 闭包装入 `GycDynamicNetworkHandler`，通过
 `GycDynamicNetworkModule.register(makeHandler:)` 安装工厂。同版 Pod 只含薄接收端，不包含第二份 Shared。
@@ -105,15 +103,15 @@ bash gradlew :dynamic-page-kuikly:compileKotlinIosSimulatorArm64 :dynamic-page-k
 ```
 
 宿主源码联调另已完成 iOS Simulator / OHOS Native 链接。实际执行结果及未覆盖范围见功能文档；
-`1.0.1` 待按下方流程冻结归档并完成 Jenkins / PR 门禁；远程消费结果由发布回执与宿主记录确认，不代替设备行为或真实热更新验收。
+Maven `1.0.1` 已有[正式 Release](https://github.com/gycrosskit/dynamic-page/releases/tag/1.0.1)；归档发布、JitPack 解析与独立消费分别判断，远程消费结果由精确版本回执与宿主记录确认，不代替设备行为或真实热更新验收。
 组件自有代码使用 [Apache-2.0](LICENSE)；Kuikly ABI 声明的许可见[第三方声明](THIRD_PARTY_NOTICES.md)。
 
 ## 发布
 
-Jenkins 以 `VERSION=1.0.1 bash scripts/archive-prebuilt.sh` 构建完整 Maven 候选归档，
+Jenkins 以 `VERSION=1.0.2 bash scripts/archive-prebuilt.sh` 构建完整 Maven 候选归档，
 复用共用 metadata/checker 验证 13 个 publication、四个 Native 目标、POM 及四种摘要。冻结摘要写入
 `release-checksums.txt`，同名 Tag 与 GitHub Release 归档不可覆盖；JitPack 仅安装已验证字节。
 发布后使用 `scripts/check-public-maven.py` 检查全部公开变体，再由宿主独立验证三端正式依赖。
 
 鸿蒙 C interop 仅在发布阶段作为真实传递 artifact 独立发布，避免 JitPack 把两个 KLIB 的 classifier 改写为同一 URL；宿主仍只依赖原有两个产品。
-iOS receiver 实现不变，Git Pod 为 `1.0.2`（`native-1.0.2`），Maven 保留 `1.0.1`；历史已经验收的 Git Pod `0.1.0-rc.1` 保留，不能代算当前 Git Pod 消费通过。Maven `rc.1` 的鸿蒙元数据不完整，不用于宿主接入。
+iOS receiver 实现不变，Git Pod 为 `1.0.2`（`native-1.0.2`），Maven `1.0.2` 为未发布候选；历史已经验收的 Git Pod `0.1.0-rc.1` 保留，不能代算当前 Git Pod 消费通过。Maven `rc.1` 的鸿蒙元数据不完整，不用于宿主接入。
