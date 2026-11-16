@@ -1,5 +1,14 @@
 # Dynamic Page
 
+## 日常构建入口
+
+日常编译由项目维护命令，CI 只调用 `bash scripts/build.sh compile --platform android|ios|harmony`，不串联 MR、测试或独立消费者。平台参数每次选择一个；这里只编译生产模块，iOS/ArkTS 原生消费与设备验收分别记录。
+
+iOS compile 先编译本库 Kotlin 生产目标，再用本库 Pod/SPM 生产 target 编译 Swift/ObjC；只执行 `xcodebuild build`，不运行测试或远程消费者。
+
+Maven 打包沿用项目脚本，通过 `VERSION=<不可变版本> bash scripts/build.sh package --platform maven` 调用，不上传、不创建 Tag；本库没有独立 HAR 打包渠道。发布任务复用既有 publisher、版本保护与 journal，未做消费时明确记录未消费，不把打包成功视为宿主验收。下文测试及消费命令按需要单独执行，不进入日常构建。
+
+
 Kuikly 由宿主统一选择版本；组件构建基线、允许范围及消费验证边界见[功能与平台差异](docs/功能与平台差异.md#kuikly-版本与宿主选择)。
 
 当前已发布 Maven 为 [`1.0.1`](https://github.com/gycrosskit/dynamic-page/releases/tag/1.0.1)，iOS Git Pod 为 `1.0.2`（`native-1.0.2`）；本库无独立 HAR/SPM。本轮只准备 Maven `1.0.2` 候选，与现有 Git Pod 版本对齐，尚未发布；旧 Tag、归档和摘要保持不变。源码、SDK、发布与精确消费分别验收。
@@ -115,3 +124,5 @@ Jenkins 以 `VERSION=1.0.2 bash scripts/archive-prebuilt.sh` 构建完整 Maven 
 
 鸿蒙 C interop 仅在发布阶段作为真实传递 artifact 独立发布，避免 JitPack 把两个 KLIB 的 classifier 改写为同一 URL；宿主仍只依赖原有两个产品。
 iOS receiver 实现不变，Git Pod 为 `1.0.2`（`native-1.0.2`），Maven `1.0.2` 为未发布候选；历史已经验收的 Git Pod `0.1.0-rc.1` 保留，不能代算当前 Git Pod 消费通过。Maven `rc.1` 的鸿蒙元数据不完整，不用于宿主接入。
+
+依赖缓存沿用调用方提供的 `GRADLE_USER_HOME`、`KONAN_DATA_DIR`、`CP_CACHE_DIR`、`GRADLE_RO_DEP_CACHE`，编译与打包使用同一组目录。项目入口不清理这些缓存，也不强制刷新依赖；Maven、Google 与插件仓库镜像由本项目 `settings.gradle.kts` 和已有 `scripts/ci-repositories.gradle`（如存在）维护。CI 仅统一 GitHub 出站代理。
