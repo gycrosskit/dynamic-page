@@ -1,5 +1,7 @@
 # Dynamic Page
 
+新版 Maven 发布由 Jenkins 生成同版本归档、`source-receipt.json` 和 `SHA256SUMS`。JitPack 核对标签来源、归档尺寸和摘要后安装同一份制品。历史发布按原版本 Tag 复验。
+
 ## 日常构建入口
 
 日常编译由项目维护命令，CI 只调用 `bash scripts/build.sh compile --platform android|ios|harmony`，不串联 MR、测试或独立消费者。平台参数每次选择一个；这里只编译生产模块，iOS/ArkTS 原生消费与设备验收分别记录。
@@ -117,9 +119,7 @@ Maven `1.0.1` 已有[正式 Release](https://github.com/gycrosskit/dynamic-page/
 
 ## 发布
 
-Jenkins 以 `VERSION=1.0.2 bash scripts/archive-prebuilt.sh` 构建完整 Maven 候选归档，
-复用共用 metadata/checker 验证 13 个 publication、四个 Native 目标、POM 及四种摘要。冻结摘要写入
-`release-checksums.txt`，同名 Tag 与 GitHub Release 归档不可覆盖；JitPack 仅安装已验证字节。
+Jenkins 构建完整 Maven 归档，复用共用 metadata/checker 核对 13 个 publication、四个 Native 目标、POM 及四种摘要。
 发布后使用 `scripts/check-public-maven.py` 检查全部公开变体，再由宿主独立验证三端正式依赖。
 
 鸿蒙 C interop 仅在发布阶段作为真实传递 artifact 独立发布，避免 JitPack 把两个 KLIB 的 classifier 改写为同一 URL；宿主仍只依赖原有两个产品。
