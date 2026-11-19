@@ -1,0 +1,356 @@
+{
+  "version": 1,
+  "created_at": "2026-11-19T08:48:45Z",
+  "updated_at": "2026-11-19T08:58:48Z",
+  "files": {
+    ".gitattributes": {
+      "role": "index",
+      "sha256": "21fa16a2122e2b0360b47502c577428b645437e08e9e87ffba661f84853cb476",
+      "size": 291,
+      "normalized_sha256": "21fa16a2122e2b0360b47502c577428b645437e08e9e87ffba661f84853cb476"
+    },
+    ".gitignore": {
+      "role": "index",
+      "sha256": "70bce6ee0d839f6921dfdc675a6d43f565ec71be7a93561a4c371ece900e975d",
+      "size": 177,
+      "normalized_sha256": "70bce6ee0d839f6921dfdc675a6d43f565ec71be7a93561a4c371ece900e975d"
+    },
+    "AGENTS.md": {
+      "role": "index",
+      "sha256": "ddb50101a5be7eb54bde0bdccb2ce15fbac13a0efed1b2851adc248c7a39bcb7",
+      "size": 13258,
+      "normalized_sha256": "ddb50101a5be7eb54bde0bdccb2ce15fbac13a0efed1b2851adc248c7a39bcb7"
+    },
+    "CHANGELOG.md": {
+      "role": "index",
+      "sha256": "a0ba9f9deddbd2a2c1b748c14b7c7040ccd0fe9ed51d22dc333e325d20fe4def",
+      "size": 1315,
+      "normalized_sha256": "a0ba9f9deddbd2a2c1b748c14b7c7040ccd0fe9ed51d22dc333e325d20fe4def"
+    },
+    "GycDynamicPageNative.podspec": {
+      "role": "index",
+      "sha256": "c5f73b67d6f88b27f2d899f85e7a6ac97e527044cae93d3965c167c107777fbc",
+      "size": 650,
+      "normalized_sha256": "c5f73b67d6f88b27f2d899f85e7a6ac97e527044cae93d3965c167c107777fbc"
+    },
+    "LICENSE": {
+      "role": "index",
+      "sha256": "c69e86da3fc2081768d5839c99bf63ee397a308f78e6f61cd2babc530a36f9cc",
+      "size": 11356,
+      "normalized_sha256": "c69e86da3fc2081768d5839c99bf63ee397a308f78e6f61cd2babc530a36f9cc"
+    },
+    "README.md": {
+      "role": "index",
+      "sha256": "a61989c0fadb19addadd0e12bef2b2d26972f28bfe61c26a0399a9e1c2c48c59",
+      "size": 8732,
+      "normalized_sha256": "a61989c0fadb19addadd0e12bef2b2d26972f28bfe61c26a0399a9e1c2c48c59"
+    },
+    "THIRD_PARTY_NOTICES.md": {
+      "role": "index",
+      "sha256": "697ea5084828ba63271e1e6abc885dd27f34b5a50806dab7f8b0e9d9a6f1a88c",
+      "size": 418,
+      "normalized_sha256": "697ea5084828ba63271e1e6abc885dd27f34b5a50806dab7f8b0e9d9a6f1a88c"
+    },
+    "aoci.code.txt": {
+      "role": "index",
+      "sha256": "318eb0d4f6d407bfdd78ee711957f3247a0f8b332c50aadf290c01d5b7ed300c",
+      "size": 13283,
+      "normalized_sha256": "318eb0d4f6d407bfdd78ee711957f3247a0f8b332c50aadf290c01d5b7ed300c"
+    },
+    "aoci.meta.txt": {
+      "role": "index",
+      "sha256": "fbc304fa05182547e96f1f8404c7c30ad6c366bba9589523f1019c2c1da0427c",
+      "size": 1989,
+      "normalized_sha256": "fbc304fa05182547e96f1f8404c7c30ad6c366bba9589523f1019c2c1da0427c"
+    },
+    "aoci.txt": {
+      "role": "index",
+      "sha256": "8f568b7a3e23cad28eb630e75050e71204d585c769c3402e45bae80fca213e5e",
+      "size": 301,
+      "normalized_sha256": "8f568b7a3e23cad28eb630e75050e71204d585c769c3402e45bae80fca213e5e"
+    },
+    "build.gradle.kts": {
+      "role": "index",
+      "sha256": "dc0f11de7ca48dbe0321cc07511ca89cec28c88bc4a9ea125151d38c41fe2953",
+      "size": 1398,
+      "normalized_sha256": "dc0f11de7ca48dbe0321cc07511ca89cec28c88bc4a9ea125151d38c41fe2953"
+    },
+    "docs/功能与平台差异.md": {
+      "role": "index",
+      "sha256": "71e01e32a22fd5214a13d34c3c01c71765bc0cfc90cc7fea37633c12caf63673",
+      "size": 13314,
+      "normalized_sha256": "71e01e32a22fd5214a13d34c3c01c71765bc0cfc90cc7fea37633c12caf63673"
+    },
+    "dynamic-page-core/build.gradle.kts": {
+      "role": "index",
+      "sha256": "1514394731c3250866e6c8e0e109882fb3ae1b9665511ab941d3059c165c4ba6",
+      "size": 912,
+      "normalized_sha256": "1514394731c3250866e6c8e0e109882fb3ae1b9665511ab941d3059c165c4ba6"
+    },
+    "dynamic-page-core/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/DynamicCapability.kt": {
+      "role": "index",
+      "sha256": "70d61337d9b05df24258aa7cb36fa0fb6b51a6538e2fd42321284586a85a95cb",
+      "size": 731,
+      "normalized_sha256": "70d61337d9b05df24258aa7cb36fa0fb6b51a6538e2fd42321284586a85a95cb"
+    },
+    "dynamic-page-core/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/DynamicNetwork.kt": {
+      "role": "index",
+      "sha256": "0f12028f8401b859a3347f0dd4b54f6a845a3decfc907bd65f5178fff8c41139",
+      "size": 726,
+      "normalized_sha256": "0f12028f8401b859a3347f0dd4b54f6a845a3decfc907bd65f5178fff8c41139"
+    },
+    "dynamic-page-core/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/DynamicPage.kt": {
+      "role": "index",
+      "sha256": "c55209691666283742adc58d94b7595e02d22d02a6332a10f18c66e90b7ce01a",
+      "size": 2589,
+      "normalized_sha256": "c55209691666283742adc58d94b7595e02d22d02a6332a10f18c66e90b7ce01a"
+    },
+    "dynamic-page-core/src/commonTest/kotlin/io/github/gycrosskit/dynamicpage/DynamicPageTest.kt": {
+      "role": "index",
+      "sha256": "19e0abbec189b5b4a1de517a917f0a3c2774c2c11afd4c3db6fc7bbe750a8d0b",
+      "size": 3090,
+      "normalized_sha256": "19e0abbec189b5b4a1de517a917f0a3c2774c2c11afd4c3db6fc7bbe750a8d0b"
+    },
+    "dynamic-page-kuikly/build.gradle.kts": {
+      "role": "index",
+      "sha256": "a3666a99dfdbdabb344258e6ff36fb79ef59785490f2b7c75b4e8d347b43ecb2",
+      "size": 1745,
+      "normalized_sha256": "a3666a99dfdbdabb344258e6ff36fb79ef59785490f2b7c75b4e8d347b43ecb2"
+    },
+    "dynamic-page-kuikly/src/androidMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/AndroidDynamicNetworkModule.kt": {
+      "role": "index",
+      "sha256": "d4d39897cf3e67da2e9c8d7c87b5a1d6bc5b23e2e7548367ae02d2cba0de3f05",
+      "size": 2588,
+      "normalized_sha256": "d4d39897cf3e67da2e9c8d7c87b5a1d6bc5b23e2e7548367ae02d2cba0de3f05"
+    },
+    "dynamic-page-kuikly/src/androidUnitTest/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkModuleTest.kt": {
+      "role": "index",
+      "sha256": "99f4a3f94fa9aaff1e6db601271cc5e7b11c41b7b4b5ad318d52ca1f7073d415",
+      "size": 15444,
+      "normalized_sha256": "99f4a3f94fa9aaff1e6db601271cc5e7b11c41b7b4b5ad318d52ca1f7073d415"
+    },
+    "dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkHandler.kt": {
+      "role": "index",
+      "sha256": "a4106adf0882b6be32f8f13767b814ad4c5d14f9e10b9f6a6cd33399f2db100b",
+      "size": 5560,
+      "normalized_sha256": "a4106adf0882b6be32f8f13767b814ad4c5d14f9e10b9f6a6cd33399f2db100b"
+    },
+    "dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkModule.kt": {
+      "role": "index",
+      "sha256": "6180fab1481373a8894b8f4c51c699ec831a770737dcb34e8e749658a7ba41cc",
+      "size": 5679,
+      "normalized_sha256": "6180fab1481373a8894b8f4c51c699ec831a770737dcb34e8e749658a7ba41cc"
+    },
+    "dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkProtocol.kt": {
+      "role": "index",
+      "sha256": "3e4077744ef6e69696c451035a7f987c81f088917240fc3d788ae9645a23c43f",
+      "size": 2381,
+      "normalized_sha256": "3e4077744ef6e69696c451035a7f987c81f088917240fc3d788ae9645a23c43f"
+    },
+    "dynamic-page-kuikly/src/commonTest/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkHandlerTest.kt": {
+      "role": "index",
+      "sha256": "2c16b90dd686173f71ea467a37bf9d8855682272478b848f788784587db3c3b7",
+      "size": 19066,
+      "normalized_sha256": "2c16b90dd686173f71ea467a37bf9d8855682272478b848f788784587db3c3b7"
+    },
+    "dynamic-page-kuikly/src/nativeInterop/cinterop/kuiklyModule.def": {
+      "role": "index",
+      "sha256": "ae8c358609066ffaf46ef6783d173fdc706ab7e931ca4943266914a1611faf67",
+      "size": 75,
+      "normalized_sha256": "ae8c358609066ffaf46ef6783d173fdc706ab7e931ca4943266914a1611faf67"
+    },
+    "dynamic-page-kuikly/src/nativeInterop/cinterop/kuiklyModule.h": {
+      "role": "index",
+      "sha256": "4621204acd8d1bbbcffe7966803ea3bbe3475dc55031e66c8528e8e380d7d6f8",
+      "size": 1273,
+      "normalized_sha256": "4621204acd8d1bbbcffe7966803ea3bbe3475dc55031e66c8528e8e380d7d6f8"
+    },
+    "dynamic-page-kuikly/src/ohosArm64Main/kotlin/io/github/gycrosskit/dynamicpage/kuikly/OhosDynamicNetworkModule.kt": {
+      "role": "index",
+      "sha256": "7cd855b62c141cedf96f95d974ffc1c2560ed2c1ed69f892d94ad0c3a700975a",
+      "size": 4564,
+      "normalized_sha256": "7cd855b62c141cedf96f95d974ffc1c2560ed2c1ed69f892d94ad0c3a700975a"
+    },
+    "gradle.properties": {
+      "role": "index",
+      "sha256": "d85ffa85005fec2dc3b5189fed09a5056bf0a244cfe8d55e380d49ddd9a8ae3d",
+      "size": 122,
+      "normalized_sha256": "d85ffa85005fec2dc3b5189fed09a5056bf0a244cfe8d55e380d49ddd9a8ae3d"
+    },
+    "gradle/wrapper/gradle-wrapper.jar": {
+      "role": "index",
+      "sha256": "e996d452d2645e70c01c11143ca2d3742734a28da2bf61f25c82bdc288c9e637",
+      "size": 59203
+    },
+    "gradle/wrapper/gradle-wrapper.properties": {
+      "role": "index",
+      "sha256": "dcb542328654fb670759f0cbf4710c873c585bbb52896f0c836b7b3c69d472ac",
+      "size": 203,
+      "normalized_sha256": "dcb542328654fb670759f0cbf4710c873c585bbb52896f0c836b7b3c69d472ac"
+    },
+    "gradlew": {
+      "role": "index",
+      "sha256": "63135287117a1e6d12c84580f1f49c61d1ba02218ecd28660605e97f976e7d65",
+      "size": 5766,
+      "normalized_sha256": "63135287117a1e6d12c84580f1f49c61d1ba02218ecd28660605e97f976e7d65"
+    },
+    "gradlew.bat": {
+      "role": "index",
+      "sha256": "c46a27c79007746de5922b17abb6230d64ad8b1ba3ad1585ee5c6543c2a9b129",
+      "size": 2674,
+      "normalized_sha256": "c46a27c79007746de5922b17abb6230d64ad8b1ba3ad1585ee5c6543c2a9b129"
+    },
+    "ios/Sources/GycDynamicPageNative/GycDynamicNetworkModule.swift": {
+      "role": "index",
+      "sha256": "c96b54410168fd830b6815a75aef18c179c81a6bea60bd89a32527e077cfaab2",
+      "size": 2863,
+      "normalized_sha256": "c96b54410168fd830b6815a75aef18c179c81a6bea60bd89a32527e077cfaab2"
+    },
+    "jitpack-install.sh": {
+      "role": "index",
+      "sha256": "68d6af4d63edfb1e01eb61f49ed2ed4bb094978875a29238d29bf3ad1cc80315",
+      "size": 4709,
+      "normalized_sha256": "68d6af4d63edfb1e01eb61f49ed2ed4bb094978875a29238d29bf3ad1cc80315"
+    },
+    "jitpack-metadata.py": {
+      "role": "index",
+      "sha256": "9d6becda7241ba10df34fe335e17fb93904be772868cc9ad4ffae4a8bc74a448",
+      "size": 2999,
+      "normalized_sha256": "9d6becda7241ba10df34fe335e17fb93904be772868cc9ad4ffae4a8bc74a448"
+    },
+    "jitpack.yml": {
+      "role": "index",
+      "sha256": "f80ceb84950b0349364f327fa30b9a52d2c91e94cb85f6d77852d355bd469aea",
+      "size": 69,
+      "normalized_sha256": "f80ceb84950b0349364f327fa30b9a52d2c91e94cb85f6d77852d355bd469aea"
+    },
+    "licenses/KuiklyUI-LICENSE": {
+      "role": "index",
+      "sha256": "a77dec24acb2fe012df52b29bf17971ebb37a9ae44b0df812f8e64f5affcb90e",
+      "size": 32984,
+      "normalized_sha256": "a77dec24acb2fe012df52b29bf17971ebb37a9ae44b0df812f8e64f5affcb90e"
+    },
+    "scripts/archive-prebuilt.sh": {
+      "role": "index",
+      "sha256": "41f87c50d0449bba9544efed6cb06d54062639d4469096ce24bc56e203372682",
+      "size": 1609,
+      "normalized_sha256": "41f87c50d0449bba9544efed6cb06d54062639d4469096ce24bc56e203372682"
+    },
+    "scripts/build.sh": {
+      "role": "index",
+      "sha256": "7f9cb16d62de8354b636fea15f3c2530eff01dd8a5c730b0aa5fa89546c2761c",
+      "size": 2523,
+      "normalized_sha256": "7f9cb16d62de8354b636fea15f3c2530eff01dd8a5c730b0aa5fa89546c2761c"
+    },
+    "scripts/check-maven.py": {
+      "role": "index",
+      "sha256": "b63fe7c57fd7e339401dea1c15d058a0d3a88589024e4b788952c79d5beaf376",
+      "size": 9007,
+      "normalized_sha256": "b63fe7c57fd7e339401dea1c15d058a0d3a88589024e4b788952c79d5beaf376"
+    },
+    "scripts/check-public-maven.py": {
+      "role": "index",
+      "sha256": "1f38e825e4dd966a4faa18d7315d6536841b03145b3fc0ace366bcde1817b203",
+      "size": 17590,
+      "normalized_sha256": "1f38e825e4dd966a4faa18d7315d6536841b03145b3fc0ace366bcde1817b203"
+    },
+    "scripts/ci-repositories.gradle": {
+      "role": "index",
+      "sha256": "fab9fe2d00a21dff4fba0885046eb5eb470474e4b85bffb9636e79dfb37abac3",
+      "size": 2284,
+      "normalized_sha256": "fab9fe2d00a21dff4fba0885046eb5eb470474e4b85bffb9636e79dfb37abac3"
+    },
+    "scripts/prepare-cinterop-publication.py": {
+      "role": "index",
+      "sha256": "3d91cd8a31e47bbfdcb9c1e23a68276d4a9e828a4e6ed37477f09fc7429d36f5",
+      "size": 3703,
+      "normalized_sha256": "3d91cd8a31e47bbfdcb9c1e23a68276d4a9e828a4e6ed37477f09fc7429d36f5"
+    },
+    "scripts/test-cinterop-publication.py": {
+      "role": "index",
+      "sha256": "ea44c847b29eb075f4044f5d0b5b5e2f5d1f6f610f61b1f55dd966e889978acb",
+      "size": 3901,
+      "normalized_sha256": "ea44c847b29eb075f4044f5d0b5b5e2f5d1f6f610f61b1f55dd966e889978acb"
+    },
+    "settings.gradle.kts": {
+      "role": "index",
+      "sha256": "1f7cfe736d8c292a849c1d26eaf4c5294bbe9a3c3c8b4744bcd2105e65c875a7",
+      "size": 1830,
+      "normalized_sha256": "1f7cfe736d8c292a849c1d26eaf4c5294bbe9a3c3c8b4744bcd2105e65c875a7"
+    },
+    "tests/test_jitpack_install.py": {
+      "role": "index",
+      "sha256": "5422ea6beb32d406e5ba00f931521e92e65dacfd73ec64d718a56e3cdbd91d4d",
+      "size": 6214,
+      "normalized_sha256": "5422ea6beb32d406e5ba00f931521e92e65dacfd73ec64d718a56e3cdbd91d4d"
+    }
+  },
+  "managed_scope": {
+    "version": "managed-scope-baseline/v1",
+    "policy_identity": "8d28b84e19128a94f32639591473fb957e1442a990d09030895878dc6bab66ca",
+    "observe_change_policy": "review_required",
+    "budget_policy_identity": "15e9b37a6c57e9bf03c9df3d0d049eb5b9a7f5540f9d34960408114e2538a32d",
+    "budget_policy": {
+      "version": "cognition-budget-policy/v1",
+      "mode": "enforce",
+      "whole_index": {
+        "target_tokens": 200000,
+        "warning_tokens": 300000,
+        "max_tokens": 400000
+      },
+      "r": [
+        {
+          "min_c": 1,
+          "max_c": 4,
+          "target_tokens": 25,
+          "max_tokens": 50
+        },
+        {
+          "min_c": 5,
+          "max_c": 7,
+          "target_tokens": 45,
+          "max_tokens": 90
+        },
+        {
+          "min_c": 8,
+          "max_c": 8,
+          "target_tokens": 70,
+          "max_tokens": 140
+        },
+        {
+          "min_c": 9,
+          "max_c": 9,
+          "target_tokens": 90,
+          "max_tokens": 180
+        }
+      ],
+      "s": [
+        {
+          "min_c": 1,
+          "max_c": 4,
+          "target_tokens": 20,
+          "max_tokens": 40
+        },
+        {
+          "min_c": 5,
+          "max_c": 7,
+          "target_tokens": 40,
+          "max_tokens": 80
+        },
+        {
+          "min_c": 8,
+          "max_c": 8,
+          "target_tokens": 70,
+          "max_tokens": 140
+        },
+        {
+          "min_c": 9,
+          "max_c": 9,
+          "target_tokens": 100,
+          "max_tokens": 200
+        }
+      ]
+    },
+    "apply_authorization_mode": "auto"
+  }
+}
