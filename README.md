@@ -4,12 +4,9 @@
 
 ## 日常构建入口
 
-日常编译由项目维护命令，CI 只调用 `bash scripts/build.sh compile --platform android|ios|harmony`，不串联 MR、测试或独立消费者。平台参数每次选择一个；这里只编译生产模块，iOS/ArkTS 原生消费与设备验收分别记录。
+`bash scripts/build.sh compile --platform android|ios|harmony` 每次编译一个平台的生产目标，iOS 同时编译原生 Pod。测试、独立消费和设备验证分别执行。
 
-iOS compile 先编译本库 Kotlin 生产目标，再用本库 Pod/SPM 生产 target 编译 Swift/ObjC；只执行 `xcodebuild build`，不运行测试或远程消费者。
-
-Maven 打包沿用项目脚本，通过 `VERSION=<不可变版本> bash scripts/build.sh package --platform maven` 调用，不上传、不创建 Tag；本库没有独立 HAR 打包渠道。发布任务复用既有 publisher、版本保护与 journal，未做消费时明确记录未消费，不把打包成功视为宿主验收。下文测试及消费命令按需要单独执行，不进入日常构建。
-
+`VERSION=<不可变版本> bash scripts/build.sh package --platform maven` 生成 Maven 归档。标签和上传由发布流程处理。
 
 Kuikly 由宿主统一选择版本；组件构建基线、允许范围及消费验证边界见[功能与平台差异](docs/功能与平台差异.md#kuikly-版本与宿主选择)。
 
@@ -44,12 +41,7 @@ val request = DynamicPageRequest("example", "ExamplePage", "{}")
 val result = DynamicPageConfiguration().open(request) // UNAVAILABLE
 ```
 
-既有 `DynamicPageRuntime.open` 保留 API 兼容。需要避免异步加载完成后误跳转时，宿主导航使用
-`DynamicPageLoader.prepare`（可取消下载/校验）和 `PreparedDynamicPage.open/close`（最终同步挂载/释放）；
-配置 provider 必须精确匹配。none、空值、缺 adapter、不匹配或非法请求均不调用 loader；普通加载异常返回 null，取消继续抛出。
-prepare 不得提前挂载；adapter 负责交出资源前的失败/取消清理。OPENED 后资源归页面，其余由导航 close，
-导航负责登录/隐私/功能与 owner 复核及同一页面随包版本回退。组件不建立第二份路由或返回栈。
-provider 的版本、动态 SDK、许可、下载、验签、缓存和回滚均留给未来具体接入；当前没有 Shiply adapter。
+宿主导航通过 `DynamicPageLoader.prepare` 异步准备，在最终导航提交点调用 `PreparedDynamicPage.open`，未挂载的资源通过 `close` 释放。provider、输入校验和取消行为见[功能合同](docs/功能与平台差异.md#功能合同)。
 
 ## 宿主能力 Module
 
@@ -62,17 +54,7 @@ provider 的版本、动态 SDK、许可、下载、验签、缓存和回滚均�
 保持不变，以复用已发布 iOS Git Pod 的任意 method 转发和原生接线。旧网络 `request` 保留兼容；
 宿主可以通过 `invoke(http.execute)` 和 `invokeTask(http.read/release)` 承载通用 HTTP，由业务包自行解析。
 其他能力走 `invoke(DynamicCapabilityRequest("app.context", "get", "{}")) { response -> ... }`。
-`invoke` 回执类型是 `DynamicNetworkResponse` 的别名，继续使用 status/httpStatus/bodyJson；
-capability/operation 为 1..128 字符标识，支持 `app.context`，paramsJson 必须为 JSON object。
-两种调用共用 8 个在途额度、512 KiB 协议上限及取消/超时/销毁管理；默认未注入能力返回 unavailable。
-
-长交互使用 `invokeTask(DynamicCapabilityRequest(...)) { response -> ... }`，wire method 为 `task`，
-仍复用 capabilityRequest，并且只交付一次最终回执；不是多回调或业务订阅协议。它独立最多 16 个在途任务，
-不占 request/invoke 的 8 个槽位，也不套 native 30 秒或 sender 31 秒短请求超时；512 KiB envelope 和输入验证不变。
-调用方须在页面离开、收集停止或销毁时执行返回的取消函数，页面最终销毁时仍须 dispose；
-等待期限由业务或原生能力限定，不能将缺少全局超时理解为允许永久占槽。
-持续事件可由宿主提供一次 wait 能力，上层按自己的生命周期循环 invokeTask 并在停止时取消；组件不创建订阅或自动重试。
-Android/iOS/OHOS 继续使用相同 handler 与既有单次 callback，取消/dispose 仍结算 SDK context，原生接收端无需新增业务实现。
+长交互使用 `invokeTask(DynamicCapabilityRequest(...)) { response -> ... }`，只交付一次最终回执。宿主限定等待期限并随页面取消。短调用与长任务的配额、超时及协议上限见[功能合同](docs/功能与平台差异.md#功能合同)。
 
 `DynamicCapabilityTransport` 只定义通道；网络、存储和导航的实现、能力白名单、隐私/登录态、品牌与环境策略由宿主复用已有能力。
 宿主 Koin 只装配 native 能力；随动态包变化的业务 Repo/ViewModel 及其依赖装配由业务包自己持有，
