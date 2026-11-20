@@ -1,0 +1,78 @@
+#AOCI-CODE-VOLUME: 1
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/===
+.gitattributes[FC3T]: F:固定文本检出为 LF，令 AOCI 字节基线跨平台可比 | R:code:.gitignore | A:- | S:-
+.gitignore[FC3T]: F:排除 Gradle/Kotlin 缓存、构建目录和本机 MCP 配置 | R:code:.gitattributes | A:- | S:-
+AGENTS.md[SG6S]: F:规定模型通过当前 AOCI 合同建立完整认知，随受管源码维护索引 | R:code:.gitignore | A:aoci_rules,aoci_overview,aoci_maintain | S:完整交付确认及严格 Attestation 分别判断
+CHANGELOG.md[SV3T]: F:按渠道区分 1.0.2 Maven 候选、已发布的 Git Pod 与历史版本 | R:code:README.md,code:GycDynamicPageNative.podspec | A:- | S:-
+GycDynamicPageNative.podspec[FV6T]: F:以 native 版本 Tag 分发 iOS Swift 薄接收端 | R:code:README.md,code:LICENSE | A:GycDynamicPageNative | S:iOS 14 起步；OpenKuiklyIOSRender 范围为 >=2.29.1 且 <3.0
+LICENSE[SS2M]: F:载明组件自有代码适用的 Apache 2.0 许可 | R:code:THIRD_PARTY_NOTICES.md | A:- | S:-
+README.md[SG6S]: F:提供动态页接入、三端宿主注册、构建发布入口并链接统一功能合同 | R:code:docs/功能与平台差异.md,code:GycDynamicPageNative.podspec,code:scripts/build.sh | A:DynamicPageLoader.prepare,DynamicNetworkModule | S:Markdown 保留 Maven 与 Git Pod 的精确渠道版本；没有独立 HAR 或 SPM 发布
+THIRD_PARTY_NOTICES.md[SS4T]: F:声明 OHOS cinterop 使用受 KuiklyUI License 约束的 C ABI 子集 | R:code:LICENSE,code:licenses/KuiklyUI-LICENSE | A:- | S:-
+build.gradle.kts[FV6T]: F:声明 KMP/Android 插件版本并统一 Maven 坐标和 staging 仓库 | R:code:dynamic-page-core/build.gradle.kts,code:dynamic-page-kuikly/build.gradle.kts | A:GROUP,VERSION,DYNAMIC_PAGE_STAGING_DIR | S:-
+gradle.properties[FV3T]: F:设置 Gradle 堆、UTF-8、AndroidX 和 KMP 默认层级 | R:- | A:- | S:-
+gradlew[XV3S]: F:按 POSIX 启动流程解析 Java 和应用目录并执行 Gradle Wrapper | R:code:gradle/wrapper/gradle-wrapper.properties | A:- | S:-
+gradlew.bat[XV3T]: F:在 Windows 解析 JAVA_HOME 和应用目录并启动 Gradle Wrapper | R:code:gradle/wrapper/gradle-wrapper.properties | A:- | S:-
+jitpack-install.sh[OV8T]: F:从 GitHub Release 下载被冻结的 Maven 文件，绑定 Tag 与收据后验证并安装 | R:code:jitpack.yml,code:tests/test_jitpack_install.py | A:source-receipt.json,SHA256SUMS | S:校验完整 SHA 和树、构建身份及归档摘要；检查条目和目标路径后才解包，不重新构建
+jitpack-metadata.py[XV6T]: F:清理和重新签注会造成 JitPack 发布冲突的空资源变体元数据 | R:code:scripts/archive-prebuilt.sh | A:normalize | S:发现非空资源 ZIP 必须拒绝并保留 classifier 安全的单独发布方案
+jitpack.yml[FV4T]: F:以 JDK 21 运行 dynamic-page 的预构建 Maven 安装器 | R:code:jitpack-install.sh | A:- | S:-
+settings.gradle.kts[FV5T]: F:配置插件与依赖镜像，引用 core 和 Kuikly 两个发布模块 | R:code:build.gradle.kts,code:dynamic-page-core/build.gradle.kts,code:dynamic-page-kuikly/build.gradle.kts | A:- | S:公用阿里云镜像排除腾讯组，避免先命中不完整 KMP 元数据
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/docs/===
+功能与平台差异.md[SG6S]: F:记录动态页面和网络能力的默认行为、三端销毁差异及候选验证边界 | R:code:README.md | A:- | S:OHOS context 归 SDK，应用不解引用或自行释放
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-core/===
+build.gradle.kts[FV5T]: F:发布通用动态页契约的 Android Release 及 iOS、OHOS KMP 变体 | R:code:build.gradle.kts,code:dynamic-page-kuikly/build.gradle.kts | A:dynamic-page-core | S:-
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-core/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/===
+DynamicCapability.kt[LN7T]: F:定义由宿主注入的通用能力请求、单次回执和接收端释放合同 | R:code:dynamic-page-core/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/DynamicNetwork.kt | A:DynamicCapabilityRequest,DynamicCapabilityResponse,DynamicCapabilityTransport | S:响应复用网络回执结构以兼容已发布的 iOS 接收端
+DynamicNetwork.kt[LN7T]: F:定义动态页网络请求、状态回执和宿主 transport 接口 | R:code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkHandler.kt | A:DynamicNetworkRequest,DynamicNetworkResponse,DynamicNetworkTransport | S:组件既不创建 HttpClient，也不接收 Token 或请求头
+DynamicPage.kt[DB8T]: F:验证动态页面请求并分发同名 provider，提供直接打开和两阶段准备合同 | R:code:dynamic-page-core/src/commonTest/kotlin/io/github/gycrosskit/dynamicpage/DynamicPageTest.kt | A:DynamicPageConfiguration.open,DynamicPageConfiguration.prepare,PreparedDynamicPage | S:none、空值和 provider 不匹配不调 adapter；取消向上抛出；OPENED 后资源移交页面
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-core/src/commonTest/kotlin/io/github/gycrosskit/dynamicpage/===
+DynamicPageTest.kt[TB5T]: F:验证禁用默认、provider/参数拒绝以及准备与打开的取消处理 | R:code:dynamic-page-core/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/DynamicPage.kt | A:- | S:-
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-kuikly/===
+build.gradle.kts[FV6T]: F:装配 Kuikly 桥的 KMP 发布变体、Android Renderer 与 OHOS C ABI | R:code:build.gradle.kts,code:dynamic-page-core/build.gradle.kts | A:kuiklyModule | S:OHOS cinterop 仅读纯 C 声明，避免解析旧平台 klib
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-kuikly/src/androidMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/===
+AndroidDynamicNetworkModule.kt[IN7T]: F:注册 Android Renderer 接收端，在 Main 惰性建立独占 handler 并销毁 | R:code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkHandler.kt | A:AndroidDynamicNetworkModule,registerDynamicNetworkModule | S:销毁先立门禁，已排队请求及旧结果不得进入 Renderer
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-kuikly/src/androidUnitTest/kotlin/io/github/gycrosskit/dynamicpage/kuikly/===
+DynamicNetworkModuleTest.kt[TN6M]: F:用模拟送达与时钟验证发送端单次结算、取消、超时、独立 task 配额及异常清理 | R:code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkModule.kt | A:- | S:-
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/===
+DynamicNetworkHandler.kt[MN9S]: F:验证 Kuikly wire 请求并通过 Renderer 独占协程把网络和能力调用分发给宿主 | R:code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkProtocol.kt,code:dynamic-page-core/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/DynamicCapability.kt | A:DynamicNetworkHandler.call,DynamicNetworkHandler.dispose | S:短请求 8 路、native 30 秒；task 独占 16 路、不套短超时；取消先摘除但仍尝试回执一次以释放 SDK context
+DynamicNetworkModule.kt[EN9S]: F:在页面端发出 request/invoke/task，跟踪回执及取消并关闭页面持有的 callback | R:code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkHandler.kt,code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkProtocol.kt | A:DynamicNetworkModule.request,DynamicNetworkModule.invoke,DynamicNetworkModule.invokeTask | S:短请求计时 31 秒；先保留 Kuikly callback ref 以承接同步回执；取消控制调用仍携非空 callback
+DynamicNetworkProtocol.kt[CN7T]: F:统一能力输入格式、配额与有界响应编码 | R:code:dynamic-page-core/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/DynamicNetwork.kt | A:NetworkCall,validCapabilityRequest,boundedResponse | S:512 KiB 按 UTF-8 字节计；无效响应映射 failed
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-kuikly/src/commonTest/kotlin/io/github/gycrosskit/dynamicpage/kuikly/===
+DynamicNetworkHandlerTest.kt[TN6M]: F:验证接收端请求隔离、协议兼容、取消与长短配额，并覆盖抛错回执与释放行为 | R:code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkHandler.kt | A:- | S:-
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-kuikly/src/nativeInterop/cinterop/===
+kuiklyModule.def[FV4T]: F:指定 OHOS cinterop 的头文件和生成包 | R:code:dynamic-page-kuikly/src/nativeInterop/cinterop/kuiklyModule.h,code:dynamic-page-kuikly/build.gradle.kts | A:- | S:-
+kuiklyModule.h[LE6T]: F:声明 Kuikly Renderer 的 Module V2、callback context 与字符串 C ABI | R:code:licenses/KuiklyUI-LICENSE,code:dynamic-page-kuikly/src/nativeInterop/cinterop/kuiklyModule.def | A:KRRenderModuleRegisterV2,KRRenderModuleDoCallback | S:对齐官方 2.29.1 头文件子集，Renderer 实现由宿主依赖供给
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/dynamic-page-kuikly/src/ohosArm64Main/kotlin/io/github/gycrosskit/dynamicpage/kuikly/===
+OhosDynamicNetworkModule.kt[IN8S]: F:注册 OHOS C ABI 接收端，并按 Renderer 管理 Main handler、回执和析构 | R:code:dynamic-page-kuikly/src/nativeInterop/cinterop/kuiklyModule.h,code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkHandler.kt | A:registerOhosDynamicNetworkModule | S:首次注册固定工厂；C 参数先复制；锁内关闭 context 回执后释放 StableRef，mutex 随 owner 回收
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/gradle/wrapper/===
+gradle-wrapper.properties[FV4T]: F:固定 Wrapper 的 Gradle 8.11.1 二进制分发及缓存位置 | R:code:gradlew,code:gradlew.bat | A:- | S:-
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/ios/Sources/GycDynamicPageNative/===
+GycDynamicNetworkModule.swift[IN8T]: F:用原生 Kuikly Module 转发任意 method 到每个 Renderer 的宿主 Shared handler | R:code:GycDynamicPageNative.podspec,code:dynamic-page-kuikly/src/commonMain/kotlin/io/github/gycrosskit/dynamicpage/kuikly/DynamicNetworkHandler.kt | A:GycDynamicNetworkModule.register,GycDynamicNetworkHandler | S:递归锁保护回执与失效；不反向同步等 Main；SDK 负责 context 回执排队
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/licenses/===
+KuiklyUI-LICENSE[SS4L]: F:保存 KuiklyUI ABI 声明适用的上游许可、版权和第三方条款 | R:code:THIRD_PARTY_NOTICES.md,code:dynamic-page-kuikly/src/nativeInterop/cinterop/kuiklyModule.h | A:- | S:-
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/scripts/===
+archive-prebuilt.sh[OV7T]: F:全量发布 Maven 至独立 staging，修复元数据、核验变体并冻结归档及摘要 | R:code:scripts/prepare-cinterop-publication.py,code:jitpack-metadata.py,code:scripts/check-maven.py | A:VERSION,DYNAMIC_PAGE_STAGING_DIR | S:要求显式版本，新建输出目录，既有版本归档不能被覆盖
+build.sh[OV7T]: F:提供单平台生产编译与 Maven 打包入口，iOS 附加原生 Pod build | R:code:scripts/archive-prebuilt.sh,code:scripts/ci-repositories.gradle,code:GycDynamicPageNative.podspec | A:compile,package | S:compile 不串联测试或独立消费；本组件没有 HAR 打包渠道
+check-maven.py[TV6S]: F:检查本地 Maven 归档的 publication、Native 变体、JVM 字节码与摘要 | R:code:scripts/archive-prebuilt.sh,code:scripts/check-public-maven.py | A:check_sidecars,check_jvm_bytecode,resolve_artifact | S:-
+check-public-maven.py[TV6M]: F:检查公开 Maven 的构建来源、元数据和每个变体实际可下载文件 | R:code:scripts/check-maven.py,code:scripts/archive-prebuilt.sh | A:audit,ready_state | S:要求精确的完整提交 SHA，版本可解析不能独立证明宿主消费
+ci-repositories.gradle[FV4T]: F:按环境启用源码构建缓存并有限预热依赖镜像 DNS | R:code:scripts/build.sh,code:settings.gradle.kts | A:GYC_CI_BUILD_CACHE | S:行为测试关闭缓存复用；DNS 预热失败仍由 Gradle 解析决定
+prepare-cinterop-publication.py[OV7T]: F:把 OHOS cinterop KLIB 移到独立同版传递制品并更新 module、POM 和校验摘要 | R:code:scripts/test-cinterop-publication.py,code:scripts/archive-prebuilt.sh | A:dynamic-page-cinterop-ohosarm64 | S:保留二进制；避免 JitPack 把同变体两份 KLIB 解析为同一个 URL
+test-cinterop-publication.py[TV5T]: F:验证独立 cinterop 发布保留 KLIB 字节、同版传递声明和重算摘要 | R:code:scripts/prepare-cinterop-publication.py | A:- | S:-
+
+===/Users/guoyang/.codex/worktrees/aoci-dynamic-page/dynamic-page/tests/===
+test_jitpack_install.py[TV5S]: F:验证 Maven 预归档安装，包括合法释放、来源和摘要拒绝以及目标逃逸保护 | R:code:jitpack-install.sh | A:- | S:-
